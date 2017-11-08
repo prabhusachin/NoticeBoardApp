@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tabApp" ng-controller="TabController" ng-init="refreshnbmsg();refreshdt();tab=0;fdt='';tdt=''">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Welcome To Notice Board</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/angular.js"></script>
+    <script type="text/javascript" src="../static/js/configangular.js"></script>
+
+<style>
+body {
+    font: 400 15px/1.8 Lato, sans-serif;
+    color: #777;
+    background-color : #e6f2ff;
+}
+.bgclass {
+    background-color : #e6f2ff;
+    height: 410px;
+}
+    .ftrclass {
+    background-color : #adc2eb;
+    }
+    h1,h2
+    {
+        color: #000080;
+    }
+    h9
+    {
+        font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 28px;
+        color: #000080;
+    }
+
+div#header, div#footer {
+    padding: 10px;
+    background-color: #0099ff;
+}
+
+div#content {
+    margin: 5px;
+    padding: 10px;
+    background-color: lightblue;
+}
+
+div.article {
+    margin: 5px;
+    padding: 10px;
+    background-color: white;
+}
+
+div#menu ul {
+    padding: 0;
+}
+
+div#menu ul li {
+    display: inline;
+    margin: 5px;
+}
+.carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+  }
+  .carousel-caption h3 {
+      color: #fff !important;
+  }
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+  }
+</style>
+</head>
+<body>
+
+
+<div id="hm" ng-repeat="item in currentries" ng-if="tab == 0">
+
+<div id="content" style="height: 620px">
+    <div class="content">
+      <div class="row">
+          <div class="col-md-1">
+            <img src="static/img/logo.jpg" width="100" height="60">
+          </div>
+
+          <div class="col-md-11">
+              <h2>Notice Board : Welcome to Thakur College Of Engineering! Have a nice day!</h2>
+          </div>
+
+      </div>
+    </div>
+
+<div class="article" style="height: 540px">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+          <div class="content">
+              <div class="row">
+			      <div class="col-md-8">
+                    <label><h2>{{item.Subj}}</h2></label>
+                  </div>
+                  <div class="col-md-4">
+                      <label><h2>{{item.TimeStamp}}</h2></label></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="panel-body bgclass" ng-if="item.mtype=='a0'"><p><h9>{{item.Msg}}</h9></p></div>
+      <div class="panel-body bgclass" ng-if="item.mtype=='a1'"><img ng-src="{{imnm}}" alt="{{item.Subj}}" width="1100" height="380"></div>
+      <div class="panel-body bgclass" ng-if="item.mtype=='a2'">
+          <div class="content">
+              <div class="row">
+			      <div class="col-md-4">
+                    <img ng-src="{{imnm}}" alt="{{item.Subj}}" width="350" height="380">
+                  </div>
+                  <div class="col-md-8">
+                      <p><h9>{{item.Msg}}</h9></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+</div>
+    <div id="header11" class="ftrclass" align="left">
+        <div class="content">
+              <div class="row">
+			      <div class="col-md-1">
+                    <label><h1>Date: </h1></label>
+                  </div>
+			      <div class="col-md-2">
+                    <label><h1>{{cdt}}</h1></label>
+                  </div>
+                  <div class="col-md-6">
+                    <label><h1> </h1></label>
+                  </div>
+                  <div class="col-md-1">
+                    <label><h1>Time: </h1></label>
+                  </div>
+                  <div class="col-md-2">
+                      <label><h1>{{ctm}}</h1></label></div>
+                  </div>
+              </div>
+          </div>
+    </div>
+</div>
+
+
+<div id="hm1" ng-if="tab == 1">
+
+<div id="content1" style="height: 620px">
+<div class="content">
+      <div class="row">
+          <div class="col-md-1">
+            <img src="static/img/logo.jpg" width="100" height="60">
+          </div>
+
+          <div class="col-md-11">
+              <h2>Notice Board : Welcome to Thakur College Of Engineering! Have a nice day!</h2>
+          </div>
+
+      </div>
+    </div>
+<div class="article" >
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="{{sldno1}}" style="height:540px">
+        <img src="../static/img/tcet1.jpg" alt="Thakur College" width="1200" height="540">
+        <div class="carousel-caption">
+          <h3>Thakur College</h3>
+          <p>The atmosphere in Thakur College is awesome.</p>
+        </div>
+      </div>
+
+      <div class="{{sldno2}}" style="height:540px">
+        <img src="../static/img/tcet2.jpg" alt="Faculty" width="1200" height="540">
+        <div class="carousel-caption">
+          <h3>Excellent Faculties</h3>
+          <p>Thank you, Thakur College - A team we won't forget.</p>
+        </div>
+      </div>
+
+      <div class="{{sldno3}}" style="height:540px">
+        <img src="../static/img/tcet3.jpg" alt="Equipments" width="1200" height="540">
+        <div class="carousel-caption">
+          <h3>Mordenized Equipments</h3>
+          <p>We have the best and well organized equipments!</p>
+        </div>
+      </div>
+    </div>
+
+
+</div>
+
+</div>
+    <div id="header1" class="ftrclass" align="left">
+        <div class="content">
+              <div class="row">
+                  <div class="col-md-1">
+                    <label><h1>Date: </h1></label>
+                  </div>
+			      <div class="col-md-2">
+                    <label><h1>{{cdt}}</h1></label>
+                  </div>
+                  <div class="col-md-6">
+                    <label><h1> </h1></label>
+                  </div>
+                  <div class="col-md-1">
+                    <label><h1>Time: </h1></label>
+                  </div>
+                  <div class="col-md-2">
+                      <label><h1>{{ctm}}</h1></label></div>
+                  </div>
+              </div>
+          </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+CREATE DATABASE NBAPP;
+USE NBAPP;
+
+CREATE TABLE NB_Info( 
+       ID  INT AUTO_INCREMENT,
+       SchName VARCHAR (120),
+       Subj VARCHAR (200),
+       TimeStamp VARCHAR (64),
+       Msg VARCHAR (2048),	
+       PRIMARY KEY (ID)
+);
+
+CREATE TABLE NB_Sched(
+       ID  INT AUTO_INCREMENT,
+       FromDt VARCHAR (20),
+       ToDt VARCHAR (20),
+       PRIMARY KEY (ID)
+);
+
+CREATE TABLE NB_Type(
+       ID  INT AUTO_INCREMENT,
+       MsgType VARCHAR (20),
+       nbid INT,
+       PRIMARY KEY (ID)
+);
+
+create table nbd_image (
+    ID  INT AUTO_INCREMENT,
+    nbimage blob,
+    nbid INT,
+    PRIMARY KEY (ID)
+ );
+
+insert into NB_Info(SchName,Subj,TimeStamp,Msg) values('Thakur College of Engineering','Electrical Engineering Project Description','27/10/2017 09:20:00','Project Name = Home Automation : The idea behind this project is to automate the day to day activities at home in single click. The activities include turning lights / fans / fridge on / off through mobile with the help of apps. People must be able to control the intensity and speed of lights and fans with the help of this app.');
+
+insert into NB_Sched(FromDt,ToDt) values('26/10/2017', '29/10/2017');
+
+insert into NB_Sched(FromDt,ToDt) values('26/9/2017', '29/9/2017');
